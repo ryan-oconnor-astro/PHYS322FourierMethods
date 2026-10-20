@@ -30,6 +30,10 @@ for data_path in sorted(data_dir.glob("*.csv")):
 
     plt.figure(figsize=(10, 5))
     plt.plot(x, y, linewidth=1.5, color="red")
+    if data_path.stem == "60HZ":
+        # three highest local maxima reported by ./measure_modulation 60HZ.csv
+        for peak_hz in (5890.62, 6125, 5953.12):
+            plt.axvline(peak_hz, color="black", linestyle=":", linewidth=1.5)
     plt.xlabel("Frequency (Hz)")
     plt.ylabel("Power Spectral Density (V^2/Hz)")
     plt.title(f"{data_path.stem} data")
